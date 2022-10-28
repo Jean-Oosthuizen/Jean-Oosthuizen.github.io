@@ -28,21 +28,23 @@ function buttonHandler(number){
     else{
         //If the submit button has been pressed, do this
         if (number == -2){
-            stringCurrentNum = parseInt(currentNum);
-            attempts += 1;
-            //If the entered number is correct, then output "You won!"
-            if (stringCurrentNum == passcode){
-                winState.innerHTML = "You won!";
-            }
-            //If the entered number is incorrect, determine a hint and display the number of attempts done
-            else{
-                if (stringCurrentNum < passcode){
-                    winState.innerHTML = "Too small | Number of attempts: "+attempts;
+            if (currentNum.length == 4){
+                stringCurrentNum = parseInt(currentNum);
+                attempts += 1;
+                //If the entered number is correct, then output "You won!"
+                if (stringCurrentNum == passcode){
+                    winState.innerHTML = "You won!";
                 }
+                //If the entered number is incorrect, determine a hint and display the number of attempts done
                 else{
-                    winState.innerHTML = "Too big | Number of attempts: "+attempts;
+                    if (stringCurrentNum < passcode){
+                        winState.innerHTML = "Too small | Number of attempts: "+attempts;
+                    }
+                    else{
+                        winState.innerHTML = "Too big | Number of attempts: "+attempts;
+                    }
+                    currentNum = resetNum;
                 }
-                currentNum = resetNum;
             }
         }
         //If neither the sumbit or display buttons have been clicked, it's another digit, and this is run
