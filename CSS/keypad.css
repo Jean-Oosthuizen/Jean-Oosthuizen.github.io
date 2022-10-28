@@ -1,0 +1,15 @@
+table, td{
+    border-collapse: collapse;
+    border: 1px solid black;
+    text-align: center;
+}
+td{
+    width: 70px;
+    height: 40px;
+    padding: 0px 0px 0px 0px;
+}
+.block{
+    display:block;
+    height: 40px;
+    line-height: 40px;
+}
