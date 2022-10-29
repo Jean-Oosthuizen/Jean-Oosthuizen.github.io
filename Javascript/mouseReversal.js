@@ -1,25 +1,35 @@
-//gets the size of the window
-let viewportHeight = window.innerHeight;
-let viewportWidth = window.innerWidth;
-//grabs the pointer image and stores it
-let pointer = document.getElementById("pointer");
+
+//constants to offset images by width and height so nothing overlaps the edge of the screen
+const imgWidth = 400;
+const imgHeight = 130;
+const homeOffset = 30;
+//gets the size of the webpage
+const viewportHeight = window.innerHeight;
+const viewportWidth = window.innerWidth;
+//grabs the fake mouse pointer image
+const pointer = document.getElementById("pointer");
 //grabs scam image
-let image = document.getElementById("image");
+const image = document.getElementById("image");
 //grabs hidden image and sets it on the opposite side of the screen as the scam image
-let hidden = document.getElementById("hidden");
-hidden.style.transform = "translate("+(viewportWidth-400)+"px,"+(viewportHeight-130)+"px)";
+const hidden = document.getElementById("hidden");
+hidden.style.transform = "translate("+(viewportWidth-imgWidth)+"px,"+(viewportHeight-imgHeight)+"px)";
 //sets the position of the home link
-document.getElementById("home").style.transform = "translate("+(viewportWidth/2+30)+"px,"+(viewportHeight/2+30)+"px)";
-//calles mouseController when the mouse moves over the body
+document.getElementById("home").style.transform = "translate("+(viewportWidth/2+homeOffset)+"px,"+(viewportHeight/2+homeOffset)+"px)";
+//calles mouseController when the real mouse moves around the page 
 document.getElementById("mouseMovement").onmousemove = function(event){
-    var pointerx = viewportWidth - event.clientX; //x position within the element.
-    var pointery = viewportHeight - event.clientY;  //y position within the element.
-    console.log(pointerx, pointery);
+    //finds the coordinates of the real mouse and then calculates where the fake mouse pointer should be translated to
+    let pointerx = viewportWidth - event.clientX;
+    let pointery = viewportHeight - event.clientY;
+    //moves fake pointer to the calculated position
     pointer.style.transform = "translate("+pointerx+"px,"+pointery+"px)";
 }
+//when your real mouse clicks on the hidden image, this is run
 document.getElementById("hidden").onclick = function(event){
-    let imgx = Math.floor(Math.random() * (viewportWidth-400));
-    let imgy = Math.floor(Math.random() * (viewportHeight-130));
+    //generates random coordinates for the scam image to move to 
+    let imgx = Math.floor(Math.random() * (viewportWidth-imgWidth));
+    let imgy = Math.floor(Math.random() * (viewportHeight-imgHeight));
+    //translates scam image to those coordinates
     hidden.style.transform = "translate("+imgx+"px,"+imgy+"px)";
-    image.style.transform = "translate("+(viewportWidth-(imgx+400))+"px,"+(viewportHeight-(imgy+130))+"px)";
+    //translates hidden image to coordinates opposit of the scam image
+    image.style.transform = "translate("+(viewportWidth-(imgx+imgWidth))+"px,"+(viewportHeight-(imgy+imgHeight))+"px)";
 }
