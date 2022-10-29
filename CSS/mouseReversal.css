@@ -1,0 +1,19 @@
+body{
+    padding:0% 0% 0% 0%;
+    margin:0% 0% 0% 0%;
+}
+#pointer, #image, #hidden, #home{
+    position:absolute;
+    top:0px;
+    left:0px;
+    margin:0px 0px 0px 0px;
+}
+.container{
+    position:relative;  
+}
+.noMouse{
+    cursor:none;
+    height: 100vh;
+    width: 100vw;
+    background-color: antiquewhite;
+}
