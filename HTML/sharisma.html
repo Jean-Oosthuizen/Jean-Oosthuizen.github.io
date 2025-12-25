@@ -1,0 +1,194 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  A friend of mine wanted to prank her grandma. She generated HTML, and asked me to
+  host it for her, since she has no web experience. This page was only used to prank her
+  grandma, and for nothing else. It's not malicious. It's my intention to take it down
+  once the prank is complete
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TEMU Champion</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #111;
+      font-family: Arial, sans-serif;
+      color: orange;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    button {
+      background-color: orange;
+      color: #111;
+      border: none;
+      border-radius: 6px;
+      padding: 0.8rem 1.6rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .error {
+      color: #ff6b6b;
+      margin-top: 0.8rem;
+      display: none;
+    }
+
+    .loading {
+      display: none;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      opacity: 0.85;
+    }
+
+    .success {
+      display: none;
+      margin-top: 1rem;
+      font-size: 1.3rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <h1>Congratulations, you're a TEMU Champion!</h1>
+    <p>Click below to claim your prize.</p>
+    <button onclick="openModal()">Claim Prize</button>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <h2>Enter Your Code</h2>
+      <input type="text" id="codeInput" placeholder="Enter code" />
+      <button onclick="checkCode()">Submit</button>
+      <div class="error" id="error">Invalid code. Try again.</div>
+      <div class="loading" id="loading">Verifying code…</div>
+      <div class="success" id="success"></div>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function playSuccessFeedback() {
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+      const audio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA=');
+      audio.play().catch(() => { });
+    }
+
+    function checkCode() {
+      const input = document.getElementById('codeInput').value.trim();
+      const error = document.getElementById('error');
+      const success = document.getElementById('success');
+      const loading = document.getElementById('loading');
+
+      error.style.display = 'none';
+      success.style.display = 'none';
+      success.textContent = '';
+      loading.style.display = 'block';
+
+      setTimeout(() => {
+        loading.style.display = 'none';
+        if (input === 'munchkins') {
+          success.textContent = 'Call +27 84 530 3000 to take your prize.';
+          success.style.display = 'block';
+          playSuccessFeedback();
+        } else {
+          error.style.display = 'block';
+        }
+      }, 1500);
+    }
+  </script>
+
+</body>
+
+</html>
